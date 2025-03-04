@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 function AllExpensesScreen() {
   return (
     <View style={styles.container}>
-      <Text>Recent Screen !!!</Text>
+      <Text>AllExpensesScreen !!!</Text>
     </View>
   );
 }
