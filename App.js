@@ -2,12 +2,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import { Ionicons } from "@expo/vector-icons";
 import { useCallback } from "react";
 import RecentScreen from "./screens/RecentExpensesScreen";
 import AllExpensesScreen from "./screens/AllExpensesScreen";
 import ManageExpensesScreen from "./screens/ManageExpenseScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { GlobalStyles } from "./constants/style";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -16,9 +18,40 @@ const Stack = createNativeStackNavigator();
 
 function ExpensesOverview() {
   return (
-    <BottomTabs.Navigator>
-      <BottomTabs.Screen name="Recent" component={RecentScreen} />
-      <BottomTabs.Screen name="AllExpenses" component={AllExpensesScreen} />
+    <BottomTabs.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: GlobalStyles.colors.primary500,
+        },
+        headerTintColor: GlobalStyles.colors.whiteApp,
+        tabBarStyle: {
+          backgroundColor: GlobalStyles.colors.primary500,
+        },
+        tabBarActiveTintColor: GlobalStyles.colors.yellow,
+      }}
+    >
+      <BottomTabs.Screen
+        name="Recent"
+        component={RecentScreen}
+        options={{
+          title: "Recent Expenses",
+          tabBarLabel: "Recent",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="receipt-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <BottomTabs.Screen
+        name="AllExpenses"
+        component={AllExpensesScreen}
+        options={{
+          title: "All Expenses",
+          tabBarLabel: "All Expenses",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="calendar" size={size} color={color} />
+          ),
+        }}
+      />
     </BottomTabs.Navigator>
   );
 }
@@ -53,7 +86,11 @@ export default function App() {
     <View style={styles.container} onLayout={onLayoutRootView}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="ExpensesOverview">
-          <Stack.Screen name="ExpensesOverview" component={ExpensesOverview} />
+          <Stack.Screen
+            name="ExpensesOverview"
+            component={ExpensesOverview}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="ManageExpense" component={ManageExpensesScreen} />
         </Stack.Navigator>
       </NavigationContainer>
