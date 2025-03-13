@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   period: {
-    fontFamily: "merriweather",
+    fontFamily: "merriweather-bold",
     fontSize: 14,
     color: GlobalStyles.colors.primary400,
   },

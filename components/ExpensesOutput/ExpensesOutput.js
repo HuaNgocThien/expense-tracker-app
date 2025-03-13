@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import ExpensesSummary from "./ExpensesSummary";
 import ExpensesList from "./ExpensesList";
+import { GlobalStyles } from "../../constants/style";
 
 const DUMMY_EXPENSES = [
   {
@@ -39,11 +40,41 @@ const DUMMY_EXPENSES = [
     amount: 2000000,
     date: new Date("2025-02-25"),
   },
+  {
+    id: "e7",
+    description: "Gym membership renewal",
+    amount: 700000,
+    date: new Date("2025-03-12"),
+  },
+  {
+    id: "e8",
+    description: "Fuel for car",
+    amount: 800000,
+    date: new Date("2025-03-09"),
+  },
+  {
+    id: "e9",
+    description: "Netflix subscription",
+    amount: 180000,
+    date: new Date("2025-03-06"),
+  },
+  {
+    id: "e10",
+    description: "Office supplies",
+    amount: 300000,
+    date: new Date("2025-03-04"),
+  },
+  {
+    id: "e11",
+    description: "Weekend trip expenses",
+    amount: 2500000,
+    date: new Date("2025-02-28"),
+  },
 ];
 
 function ExpensesOutput({ expenses, expensesPeriod }) {
   return (
-    <View>
+    <View style={styles.container}>
       <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
       <ExpensesList expenses={DUMMY_EXPENSES} />
     </View>
@@ -55,5 +86,9 @@ export default ExpensesOutput;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 24,
+    paddingBottom: 0,
+    backgroundColor: GlobalStyles.colors.whiteApp,
   },
 });

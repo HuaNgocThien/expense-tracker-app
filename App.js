@@ -10,6 +10,7 @@ import ManageExpensesScreen from "./screens/ManageExpenseScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { GlobalStyles } from "./constants/style";
+import IconButton from "./components/UI/IconButton";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,6 +29,14 @@ function ExpensesOverview() {
           backgroundColor: GlobalStyles.colors.primary500,
         },
         tabBarActiveTintColor: GlobalStyles.colors.yellow,
+        headerRight: ({ tintColor }) => (
+          <IconButton
+            icon={"add-circle-outline"}
+            size={32}
+            color={tintColor}
+            onPress={() => {}}
+          />
+        ),
       }}
     >
       <BottomTabs.Screen
@@ -35,6 +44,9 @@ function ExpensesOverview() {
         component={RecentScreen}
         options={{
           title: "Recent Expenses",
+          headerTitleStyle: {
+            fontFamily: "playfair-bold",
+          },
           tabBarLabel: "Recent",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="receipt-outline" size={size} color={color} />
@@ -46,6 +58,9 @@ function ExpensesOverview() {
         component={AllExpensesScreen}
         options={{
           title: "All Expenses",
+          headerTitleStyle: {
+            fontFamily: "playfair-bold",
+          },
           tabBarLabel: "All Expenses",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="calendar" size={size} color={color} />

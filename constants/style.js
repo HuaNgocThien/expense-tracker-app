@@ -17,6 +17,8 @@ export const GlobalStyles = {
     whiteApp: "#FAFAFA",
     teaGreen: "#E8F5E9",
     moneyGreen: "#4CAF50",
+    softMint: "#E6F4EA",
     lightBlue: "#B3E5FC",
+    lavenderMist: "#E6E6FA"
   },
 };
