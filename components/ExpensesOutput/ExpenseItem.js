@@ -1,42 +1,54 @@
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { GlobalStyles } from "../../constants/style";
 import { getFormattedDate } from "../../utils/date";
 
-function ExpenseItem({ description, amount, date }) {
+function ExpenseItem({ id, description, amount, date }) {
+  const navigation = useNavigation();
+
   const formattedAmount = amount.toLocaleString("vi-VN") + " VND";
 
-  function expensePressHandler() {}
+  function expensePressHandler() {
+    navigation.navigate("ManageExpense", {
+      expenseId: id,
+    });
+  }
 
   return (
-    <Pressable
-      onPress={expensePressHandler}
-      style={({ pressed }) => [
-        styles.pressable,
-        Platform.OS === "ios" && pressed ? styles.pressed : null,
-      ]}
-      android_ripple={{ color: GlobalStyles.colors.primary400 }}
-    >
-      <View style={styles.expenseItem}>
-        <View>
-          <Text style={[styles.textBase, styles.description]}>
-            {description}
-          </Text>
-          <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
+    <View style={styles.container}>
+      <Pressable
+        onPress={expensePressHandler}
+        style={({ pressed }) => [
+          styles.pressable,
+          Platform.OS === "ios" && pressed ? styles.pressed : null,
+        ]}
+        android_ripple={{ color: GlobalStyles.colors.primary400 }}
+      >
+        <View style={styles.expenseItem}>
+          <View>
+            <Text style={[styles.textBase, styles.description]}>
+              {description}
+            </Text>
+            <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
+          </View>
+          <View style={styles.amountContainer}>
+            <Text style={styles.amount}>{formattedAmount}</Text>
+          </View>
         </View>
-        <View style={styles.amountContainer}>
-          <Text style={styles.amount}>{formattedAmount}</Text>
-        </View>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 }
 
 export default ExpenseItem;
 
 const styles = StyleSheet.create({
-  pressable: {
+  container: {
     borderRadius: 6,
     overflow: "hidden",
+  },
+  pressable: {
+    borderRadius: 6,
     backgroundColor: GlobalStyles.colors.lavenderMist,
     marginVertical: 8,
     elevation: 3,
