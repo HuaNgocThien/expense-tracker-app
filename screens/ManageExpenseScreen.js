@@ -4,11 +4,16 @@ import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/style";
 import Button from "../components/UI/Button";
 import { ExpensesContext } from "../store/expenses-context";
+import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 
 function ManageExpensesScreen({ route, navigation }) {
   const expenseCtx = useContext(ExpensesContext);
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
+
+  const selectedExpense = expenseCtx.expenses.find(
+    (expense) => expense.id === editedExpenseId
+  );
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -23,35 +28,23 @@ function ManageExpensesScreen({ route, navigation }) {
   function cancelHandler() {
     navigation.goBack();
   }
-  function confirmHandler() {
+  function confirmHandler(expensesData) {
     if (isEditing) {
-       expenseCtx.updateExpense(
-        editedExpenseId, {
-        description: 'Test!!!!!',
-        amount: 10000000,
-        date: new Date('2025-03-27')
-      })
-    }
-    else {
-      expenseCtx.addExpense({
-        description: 'Test',
-        amount: 100000,
-        date: new Date('2025-03-27')
-      })
+      expenseCtx.updateExpense(editedExpenseId, expensesData);
+    } else {
+      expenseCtx.addExpense(expensesData);
     }
     navigation.goBack();
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttons}>
-        <Button style={styles.button} mode="flat" onPress={cancelHandler}>
-          Cancel
-        </Button>
-        <Button style={styles.button} onPress={confirmHandler}>
-          {isEditing ? "Update" : "Add"}
-        </Button>
-      </View>
+      <ExpenseForm
+        submitButtonLabel={isEditing ? "Update" : "Add"}
+        onSubmit={confirmHandler}
+        onCancel={cancelHandler}
+        defaultValues={selectedExpense}
+      />
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
@@ -75,17 +68,6 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: GlobalStyles.colors.whiteApp,
   },
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  button: {
-    borderRadius: 10,
-    overflow: "hidden",
-    minWidth: 120,
-    marginHorizontal: 8,
-  },
   deleteContainer: {
     marginTop: 16,
     paddingTop: 8,
@@ -97,5 +79,8 @@ const styles = StyleSheet.create({
     marginTop: -15,
     fontFamily: "playfair",
     color: GlobalStyles.colors.red,
+  },
+  form: {
+    flex: 1,
   },
 });

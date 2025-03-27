@@ -14,12 +14,12 @@ export const GlobalStyles = {
     red: "#E57373",
     pink: "#F48FB1",
     grayText: "#757575",
-    mediumGray: "#6C6C6C ",
+    mediumGray: "#6C6C6C",
     whiteApp: "#FAFAFA",
     teaGreen: "#E8F5E9",
     moneyGreen: "#4CAF50",
     softMint: "#E6F4EA",
     lightBlue: "#B3E5FC",
-    lavenderMist: "#E6E6FA"
+    lavenderMist: "#E6E6FA",
   },
 };

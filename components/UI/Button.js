@@ -32,10 +32,12 @@ const styles = StyleSheet.create({
     color: GlobalStyles.colors.whiteApp,
     textAlign: "center",
     fontFamily: "playfair",
+    fontSize: 18
   },
   flatText: {
     color: GlobalStyles.colors.primary400,
     fontFamily: "playfair",
+    fontSize: 18
   },
   pressed: {
     opacity: 0.75,
