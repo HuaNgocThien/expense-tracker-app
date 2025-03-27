@@ -8,7 +8,7 @@ function AllExpensesScreen() {
 
   return (
     <View style={styles.container}>
-      <ExpensesOutput expenses={expensesCtx.expenses} expensesPeriod="Total" />
+      <ExpensesOutput expenses={expensesCtx.expenses} expensesPeriod="Total" fallbackText="No registered expenses found !!!" />
     </View>
   );
 }

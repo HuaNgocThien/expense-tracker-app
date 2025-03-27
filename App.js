@@ -10,7 +10,7 @@ import ManageExpensesScreen from "./screens/ManageExpenseScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { GlobalStyles } from "./constants/style";
-import IconButton from "./components/ui/IconButton";
+import IconButton from "./components/UI/IconButton";
 import ExpensesContextProvider from "./store/expenses-context";
 
 SplashScreen.preventAutoHideAsync();

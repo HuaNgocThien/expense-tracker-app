@@ -155,5 +155,4 @@ function ExpensesContextProvider({ children }) {
     </ExpensesContext.Provider>
   );
 }
-
 export default ExpensesContextProvider;
