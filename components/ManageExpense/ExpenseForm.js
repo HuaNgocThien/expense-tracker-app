@@ -39,8 +39,10 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
 
     const amountIsValid =
       !isNaN(expensesData.amount) && expensesData.amount > 0;
-    // const dateIsValid = expensesData.date.toString() !== "Invalid Date";
-    const dateIsValid = !isNaN(new Date(inputs.date).getTime());
+    const dateIsValid = expensesData.date.toString() !== "Invalid Date";
+    // const dateIsValid =
+    //   /^\d{4}-\d{2}-\d{2}$/.test(inputs.date) &&
+    //   !isNaN(new Date(inputs.date).getTime());
     const descriptionIsValid = expensesData.description.trim().length > 0;
 
     if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
